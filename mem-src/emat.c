@@ -4,9 +4,7 @@
 #define DISK_ACCESS_TIME   10000000 /* 10 million ns = 10 ms */
 
 double compute_emat() {
-   /* FIX ME - Compute the average mean access time.  You should only need the
-    * numbers contained in the following variables. You may or may not need to
-    * use them all:
+   /
     *    count_pagefaults   - the number of page faults that occurred
     *                         (note: this _does_ include the unavoidable page
     *                                fault when a process is first brought into
