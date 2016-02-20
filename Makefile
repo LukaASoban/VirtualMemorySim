@@ -1,20 +1,16 @@
-# Makefile for CS2200 - Project 4: Virtual Memory
-# Author: Sean Caulfield <sean.caulfield@cc.gatech.edu>
-# RCS: Makefile,v 1.17 2004/04/20 03:52:23 caulfiel Exp
 
-# NOTE: You should NOT have to modify this file. Break at your own risk!
 
 # these are the two directories where source code can be located
-STUDENT   = student-src
+MEM   = mem-src
 SIMULATOR = simulator-src
 
 CC      = gcc
-OPTIONS = -O2 -I$(STUDENT) -I$(SIMULATOR) # Production options
-#OPTIONS = -O0 -g -I$(STUDENT) -I$(SIMULATOR) # Debugging Options
+OPTIONS = -O2 -I$(MEM) -I$(SIMULATOR) # Production options
+#OPTIONS = -O0 -g -I$(MEM) -I$(SIMULATOR) # Debugging Options
 CFLAGS  = $(OPTIONS) -Wall -std=c99 -pedantic -pipe -Werror
-SUBMIT  = $(STUDENT) $(SIMULATOR) Makefile references
+SUBMIT  = $(MEM) $(SIMULATOR) Makefile references
 
-STUDENT_OBJS = page-fault.o \
+MEM_OBJS = page-fault.o \
                page-replacement.o \
                page-lookup.o \
                emat.o \
@@ -29,7 +25,7 @@ SIMULATOR_OBJS = global.o \
                  sim.o \
                  tlb.o
 
-ALL_OBJS = $(STUDENT_OBJS:%.o=$(STUDENT)/%.o) \
+ALL_OBJS = $(MEM_OBJS:%.o=$(MEM)/%.o) \
            $(SIMULATOR_OBJS:%.o=$(SIMULATOR)/%.o)
 
 ALL = vm-sim
@@ -44,7 +40,7 @@ submit: clean
 
 .PHONY: clean
 clean:
-	rm -rf $(ALL) $(STUDENT)/*.o $(SIMULATOR)/*.o core* $(STUDENT)/*~
+	rm -rf $(ALL) $(MEM)/*.o $(SIMULATOR)/*.o core* $(MEM)/*~
 
 # everything below this line describes the dependencies that exist.
 $(SIMULATOR)/global.o: $(SIMULATOR)/global.h $(SIMULATOR)/global.c
@@ -69,16 +65,16 @@ $(SIMULATOR)/statistics.o: $(SIMULATOR)/statistics.h $(SIMULATOR)/statistics.c
 $(SIMULATOR)/tlb.o: $(SIMULATOR)/tlb.c       $(SIMULATOR)/tlb.h \
                     $(SIMULATOR)/global.h    $(SIMULATOR)/useful.h \
                     $(SIMULATOR)/types.h
-$(STUDENT)/emat.o:  $(SIMULATOR)/statistics.h $(STUDENT)/emat.c
-$(STUDENT)/page-fault.o: $(SIMULATOR)/types.h    $(SIMULATOR)/process.h \
+$(MEM)/emat.o:  $(SIMULATOR)/statistics.h $(MEM)/emat.c
+$(MEM)/page-fault.o: $(SIMULATOR)/types.h    $(SIMULATOR)/process.h \
                          $(SIMULATOR)/global.h   $(SIMULATOR)/swapfile.h \
-                         $(STUDENT)/page-fault.c $(SIMULATOR)/pagetable.h
-$(STUDENT)/page-lookup.o: $(SIMULATOR)/pagetable.h $(STUDENT)/page-lookup.c \
+                         $(MEM)/page-fault.c $(SIMULATOR)/pagetable.h
+$(MEM)/page-lookup.o: $(SIMULATOR)/pagetable.h $(MEM)/page-lookup.c \
                           $(SIMULATOR)/swapfile.h    $(SIMULATOR)/statistics.h \
                           $(SIMULATOR)/types.h
-$(STUDENT)/page-replacement.o: $(SIMULATOR)/types.h  $(SIMULATOR)/pagetable.h \
+$(MEM)/page-replacement.o: $(SIMULATOR)/types.h  $(SIMULATOR)/pagetable.h \
                                $(SIMULATOR)/global.h $(SIMULATOR)/process.h \
-                               $(STUDENT)/page-replacement.c
-$(STUDENT)/tlb-lookup.o: $(STUDENT)/tlb-lookup.c  $(SIMULATOR)/tlb.h \
+                               $(MEM)/page-replacement.c
+$(MEM)/tlb-lookup.o: $(MEM)/tlb-lookup.c  $(SIMULATOR)/tlb.h \
                          $(SIMULATOR)/pagetable.h $(SIMULATOR)/types.h
 
