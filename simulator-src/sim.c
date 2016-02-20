@@ -1,14 +1,4 @@
-/**
- * CS2200 Project 4: Virtual Memory
- * 
- * sim.c  The actual state machine for the VM simulator.
- *
- *        NOTE: You should NOT have to modify this file!
- *
- * Author: Sean Caulfield <sean.caulfield@cc.gatech.edu>
- * RCS: $Id: sim.c,v 1.14 2005/03/11 21:05:10 sean Exp $
- *
- */
+
 
 #define _GNU_SOURCE /* To get getopt(3) working properly */
 
