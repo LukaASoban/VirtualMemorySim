@@ -4,7 +4,7 @@
 #define DISK_ACCESS_TIME   10000000 /* 10 million ns = 10 ms */
 
 double compute_emat() {
-   /
+   /*
     *    count_pagefaults   - the number of page faults that occurred
     *                         (note: this _does_ include the unavoidable page
     *                                fault when a process is first brought into
